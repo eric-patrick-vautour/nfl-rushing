@@ -1,0 +1,29 @@
+#
+# Defaults
+#
+defaults: &defaults
+  #encoding: utf8
+  reconnect: true
+  adapter: mysql2
+  pool: 25
+  strict: false
+
+#
+# Development
+#
+development: &development
+  <<: *defaults
+  host: localhost
+  database: thescore
+  username: root
+  password: 
+
+#
+# Test
+#
+test: &test
+  <<: *defaults
+  host: localhost
+  database: thescore_test
+  username: root
+  password: 

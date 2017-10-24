@@ -1,0 +1,46 @@
+<%= render "search" %>
+<div class="results_body">
+  <% if @nfl_rushings.blank? %>
+    <div class="results_no_results">No Search Results</div>
+  <% else %>
+    <a href="<%= url_for(params.merge(format: :csv)) %>">Download as CSV</a>
+    <table border=1>
+      <tr>
+        <td><%= t(:player) %></td>
+        <td><%= t(:team) %></td>
+        <td><%= t(:pos) %></td>
+        <td><%= t(:att) %></td>
+        <td><%= t(:att_g) %></td>
+        <td><%= sort_link @search, :yds, t(:yds) %></td>
+        <td><%= t(:avg) %></td>
+        <td><%= t(:yds_g) %></td>
+        <td><%= sort_link @search, :td, t(:td) %></td>
+        <td><%= sort_link @search, :lng, t(:lng) %></td>
+        <td><%= t(:first_down) %></td>
+        <td><%= t(:first_down_percent) %></td>
+        <td><%= t(:yards_20) %></td>
+        <td><%= t(:yards_40) %></td>
+        <td><%= t(:fum) %></td>
+      </tr>
+      <%- @nfl_rushings.each do |r| -%>
+        <tr>
+          <td><%= r.player %></td>
+          <td><%= r.team %></td>
+          <td><%= r.pos %></td>
+          <td><%= r.att %></td>
+          <td><%= r.att_g %></td>
+          <td><%= r.yds %></td>
+          <td><%= r.avg %></td>
+          <td><%= r.yds_g %></td>
+          <td><%= r.td %></td>
+          <td><%= r.lng %></td>
+          <td><%= r.first_down %></td>
+          <td><%= r.first_down_percent %></td>
+          <td><%= r.yards_20 %></td>
+          <td><%= r.yards_40 %></td>
+          <td><%= r.fum %></td>
+        </tr>  
+      <%- end -%>
+    </table>
+  <%- end -%>
+</div>

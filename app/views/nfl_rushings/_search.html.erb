@@ -1,0 +1,5 @@
+<%= search_form_for @search do |f| %>
+  <h3>Search</h3>
+  <%= f.text_field :player_cont %>
+  <%= f.submit 'Search', :class => 'button' %>
+<% end %>
