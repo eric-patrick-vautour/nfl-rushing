@@ -37,7 +37,17 @@ class NflRushing < ActiveRecord::Base
     file = File.read(Rails.root.join('rushing.json'))
     data_hash = JSON.parse(file)
     data_hash.each do |data|
-      results = mappings.inject({}){|h, (k, v)| h[k] = data[v]; h}
+      results = {}
+      mappings.each do |k, v|
+        # There may be other transformations that need to be do
+        # but for the point of this exercise we will massage this data
+        if v.to_s == "Yds"
+          results[k] = (data[v].kind_of?(String) ? data[v].gsub(/\,/,"") : data[v])
+        else
+          results[k] = data[v]
+        end
+      end
+      
       NflRushing.create!(results)
     end
   end

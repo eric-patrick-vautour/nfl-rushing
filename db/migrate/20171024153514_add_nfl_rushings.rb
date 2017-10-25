@@ -1,5 +1,5 @@
 class AddNflRushings < ActiveRecord::Migration
-  def change
+  def up
     create_table :nfl_rushings do |t|
       t.string  :player
       t.string  :team
@@ -18,5 +18,13 @@ class AddNflRushings < ActiveRecord::Migration
       t.integer :fum
       t.timestamps
     end
+    
+    # We are searching by player, so we will index it
+    # we will modify this as the requirements change
+    add_index :nfl_rushings, :player, :name => 'player_idx'
+  end
+  
+  def down
+    drop_table :nfl_rushings rescue nil 
   end
 end

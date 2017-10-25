@@ -33,4 +33,6 @@ ActiveRecord::Schema.define(version: 20171024153514) do
     t.datetime "updated_at"
   end
 
+  add_index "nfl_rushings", ["player"], name: "player_idx", using: :btree
+
 end
